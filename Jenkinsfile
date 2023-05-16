@@ -28,6 +28,10 @@ node {
             sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
             sh "docker push $dockerUser/$containerName:$tag"
             echo "Image push complete"
-        }
+     }
+    }
+
+    stage('Run App') {
+        sh "ansible-playbook ansible-playbook.yml"
     }
 }
