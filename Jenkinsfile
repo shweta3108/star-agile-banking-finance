@@ -35,6 +35,6 @@ node {
        ansiblePlaybook(
             playbook: '/etc/ansible/ansible-playbook.yal',
             inventory: '/etc/ansible/hosts'
-          
+          )
     }
 }
