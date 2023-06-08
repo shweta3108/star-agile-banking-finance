@@ -33,7 +33,7 @@ node {
 
     stage('Run App') {
        ansiblePlaybook(
-            playbook: '/etc/ansible/ansible-playbook.yml',
+            playbook: 'ansible-playbook.yml',
             inventory: '/etc/ansible/hosts'
           )
     }
