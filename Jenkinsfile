@@ -32,6 +32,9 @@ node {
     }
 
     stage('Run App') {
-        sh "ansible-playbook ansible-playbook.yml"
+       ansiblePlaybook(
+            playbook: '/etc/ansible/ansible-playbook-banking.yaml',
+            inventory: '/etc/ansible/hosts'
+          }
     }
 }
