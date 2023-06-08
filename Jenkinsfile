@@ -40,6 +40,6 @@ node {
             inventory: '/etc/ansible/hosts',
             playbook: 'ansible-playbook.yml''
             )
-      
+    }
     }
 }
