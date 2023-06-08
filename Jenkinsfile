@@ -32,16 +32,16 @@ node {
     }
 
     stage('Run App') {
-        withCredentials([sshUserPrivateKey(credentialsId: 'ansible-key', keyFileVariable: 'SSH_PRIVATE_KEY', passphraseVariable: '', usernameVariable: 'SSH_USERNAME')]) {
-        sh "chmod 400 \$SSH_PRIVATE_KEY"
-        ansiblePlaybook(
-            become: true,
-            credentialsId: 'ansible-key',
-            disableHostKeyChecking: true,
-            installation: 'ansible',
-            inventory: '/etc/ansible/hosts',
-            playbook: 'ansible-playbook.yml'
-        )
-    
+       withCredentials([sshUserPrivateKey(credentialsId: 'ansible-key', keyFileVariable: 'SSH_PRIVATE_KEY', passphraseVariable: '', usernameVariable: 'SSH_USERNAME')]) {
+            sh "chmod 400 \$SSH_PRIVATE_KEY"
+            ansiblePlaybook(
+                become: true,
+                credentialsId: 'ansible-key',
+                disableHostKeyChecking: true,
+                installation: 'ansible',
+                inventory: '/etc/ansible/hosts',
+                playbook: 'ansible-playbook.yml'
+            )
+        }
     }
 }
