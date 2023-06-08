@@ -1,16 +1,18 @@
-- name : Configure Docker on EC2 Instances
-  hosts : webservers
+---
+- name: Configure Docker on EC2 Instances
+  hosts: webservers
   become: true
-  connection : ssh
-  tasks : 
-  - name: updating apt
-    command : sudo apt-get update
+  connection: ssh
+  tasks:
+    - name: updating apt
+      command: sudo apt-get update
 
-  - name : Install Docker
-    command : sudo apt-get install -y docker.io
+    - name: Install Docker
+      command: sudo apt-get install -y docker.io
 
-  - name : Start Docker Service
-    command : sudo systemctl start docker
+    - name: Start Docker Service
+      command: sudo systemctl start docker
 
-  - name: Deploy Docker Container
-    command: docker run -itd -p 8081:8081 sejalmm06/finance-me:latest
+    - name: Deploy Docker Container
+      command: docker run -itd -p 8081:8081 sejalmm06/finance-me:latest
+
