@@ -32,14 +32,13 @@ node {
     }
 
     stage('Run App') {
-       ansiblePlaybook(
+        ansiblePlaybook(
             become: true,
             credentialsId: 'ansible-key',
             disableHostKeyChecking: true,
             installation: 'ansible',
             inventory: '/etc/ansible/hosts',
-            playbook: 'ansible-playbook.yml''
-            )
-    }
+            playbook: 'ansible-playbook.yml'
+        )
     }
 }
