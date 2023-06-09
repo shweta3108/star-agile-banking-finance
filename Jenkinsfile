@@ -12,9 +12,18 @@ node {
     stage('Build'){
         sh "mvn clean install"
     }
-     stage('publish test reports'){
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Capstone-Project-Live-Demo/target/surefire-reports', 
-                     reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+    
+    stage('Publish Test Reports') {
+        publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: false,
+            reportDir: 'target/surefire-reports',
+            reportFiles: 'index.html',
+            reportName: 'HTML Report',
+            reportTitles: '',
+            useWrapperFileDirectly: true
+        ])
     }
 
     stage("Image Prune"){
