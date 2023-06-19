@@ -45,6 +45,7 @@ node {
     }
          stage('Terraform Provision') {
    dir('terraform') {
+        sh 'ls'
         sh 'terraform init'
         sh 'terraform validate'
         sh 'terraform plan -out=tfplan'
