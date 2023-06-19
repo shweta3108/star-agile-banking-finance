@@ -42,6 +42,12 @@ node {
             sh "docker push $dockerUser/$containerName:$tag"
             echo "Image push complete"
      }
+         stage('Terraform Provision') {
+ 
+      sh 'terraform init'
+      sh 'terraform plan -out=tfplan'
+      sh 'terraform apply -auto-approve tfplan'
+    
     }
 
     stage('Run App') {
