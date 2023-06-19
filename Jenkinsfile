@@ -41,7 +41,7 @@ node {
             sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
             sh "docker push $dockerUser/$containerName:$tag"
             echo "Image push complete"
-     
+        }
     }
          stage('Terraform Provision') {
  
