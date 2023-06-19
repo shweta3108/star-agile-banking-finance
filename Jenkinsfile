@@ -45,6 +45,7 @@ node {
     }
          stage('Terraform Provision') {
    dir('terraform') {
+        sh 'sudo chmod 600 devopeslab.pem'
         sh 'ls'
         sh 'terraform init'
         sh 'terraform validate'
