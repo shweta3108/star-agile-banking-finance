@@ -44,13 +44,12 @@ node {
         }
     }
          stage('Terraform Provision') {
-  dir('terraform')
-      sh 'terraform init'
-      sh 'terraform plan -out=tfplan'
-      sh 'terraform apply -auto-approve tfplan'
-    
+   dir('terraform') {
+        sh 'terraform init'
+        sh 'terraform plan -out=tfplan'
+        sh 'terraform apply -auto-approve tfplan'
     }
-
+         }
     stage('Run App') {
     ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts', playbook: 'ansible-playbook.yml'
     }
