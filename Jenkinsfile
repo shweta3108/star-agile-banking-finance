@@ -57,6 +57,11 @@ node {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'test-server-playbook.yml', inventory: 'servers_inventory'
     }
 
+    stage('Selenium Test') {
+        sleep(time: 60, unit: 'SECONDS') 
+        sh 'sudo java -jar insureme-selenium-runnable-jar.jar'
+
+    }
     stage('Run Prod Server') {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'prod-server-playbook.yml', inventory: 'servers_inventory'
     }
