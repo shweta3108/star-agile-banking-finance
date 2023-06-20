@@ -43,7 +43,17 @@ node {
             echo "Image push complete"
         }
     }
-         stage('Terraform Provision') {
+        
+stage('Test Server') {
+        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'test-server-playbook.yml', inventory: 'hosts'
+        
+    }
+
+    stage('Selenium Test') {
+        sleep(time: 80, unit: 'SECONDS') 
+        sh 'sudo java -jar financeme-selenium-runnable-jar.jar'
+    }
+     stage('Terraform Provision') {
    sh '''
                 terraform init
                 terraform validate
@@ -51,18 +61,7 @@ node {
                 terraform apply -auto-approve tfplan
                 python3 terraform_inventory.py > servers_inventory
                 '''
-  
          }
-stage('Test Server') {
-        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'test-server-playbook.yml', inventory: 'servers_inventory'
-        
-    }
-
-    stage('Selenium Test') {
-        sleep(time: 80, unit: 'SECONDS') 
-        sh 'sudo java -jar financeme-selenium-runnable-jar.jar'
-
-    }
     stage('Run Prod Server') {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'prod-server-playbook.yml', inventory: 'servers_inventory'
     }
