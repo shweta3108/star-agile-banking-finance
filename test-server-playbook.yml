@@ -1,6 +1,6 @@
 ---
 - name: Configure Docker on EC2 Instances
-  hosts: test_servers
+  hosts: testservers
   become: true
   connection: ssh
   tasks:
