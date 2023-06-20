@@ -4,7 +4,7 @@
   become: true
   connection: ssh
   tasks:
-    - name: Updating apt
+    - name: updating apt
       command: sudo apt-get update
 
     - name: Install Docker
@@ -14,5 +14,4 @@
       command: sudo systemctl start docker
 
     - name: Deploy Docker Container
-      command: docker run -itd -p 8085:8081 sejalmm06/finance-me:latest
-
+      command: docker run -itd -p 8081:8081 sejalmm06/finance-me:latest
