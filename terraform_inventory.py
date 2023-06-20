@@ -17,7 +17,7 @@ with open("servers_inventory", "w") as f:
     f.write("[prodservers]\n")
     f.write(production_server_ip + "\n\n")
     f.write("[webservers:vars]\n")
-    f.write('ansible_ssh_user="ubuntu"')
+    f.write("ansible_ssh_user=ubuntu")
 
 # Print the inventory file content
 with open("servers_inventory", "r") as f:
