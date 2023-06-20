@@ -3,6 +3,7 @@
   hosts: testservers
   become: true
   connection: ssh
+  tasks:
     - name: Updating apt
       command: sudo apt-get update
 
@@ -14,7 +15,7 @@
 
     - name: Deploy Docker Container
       command: docker run -itd -p 8085:8081 sejalmm06/finance-me:latest
-      
+
 - name: Get deployed application URL
   hosts: testservers
   tasks:
@@ -23,4 +24,3 @@
       loop: "{{ ansible_play_batch }}"
       run_once: true
       when: "'testservers' in group_names"
-
