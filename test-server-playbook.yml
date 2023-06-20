@@ -4,8 +4,6 @@
   become: true
   remote_user: ubuntu
   connection: ssh
-  vars:
-    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
     - name: Updating apt
       command: sudo apt-get update
 
