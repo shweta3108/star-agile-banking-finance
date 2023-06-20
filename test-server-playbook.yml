@@ -4,7 +4,7 @@
   become: true
   connection: ssh
   tasks:
-    - name: updating apt
+    - name: Updating apt
       command: sudo apt-get update
 
     - name: Install Docker
@@ -23,5 +23,5 @@
       shell: echo "application_url={{ hostvars[item]['ansible_default_ipv4']['address'] }}:8081" >> application_url.txt
       loop: "{{ ansible_play_batch }}"
       run_once: true
-  when: "'testservers' in group_names"
+      when: "'testservers' in group_names"
 
