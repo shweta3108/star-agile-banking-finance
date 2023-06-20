@@ -2,6 +2,7 @@
 
 import subprocess
 import json
+import yaml
 
 # Run Terraform output command to get the IP addresses
 output = subprocess.check_output(["terraform", "output", "-json"]).decode("utf-8")
@@ -17,9 +18,9 @@ inventory_data = {
     }
 }
 
-# Save the inventory data to the inventory file
+# Save the inventory data to the inventory file in YAML format
 with open("servers_inventory", "w") as f:
-    json.dump(inventory_data, f)
+    yaml.dump(inventory_data, f)
 
-# Print the inventory data as JSON
-print(json.dumps(inventory_data))
+# Print the inventory data as YAML
+print(yaml.dump(inventory_data))
