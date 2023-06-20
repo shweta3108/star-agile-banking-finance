@@ -17,6 +17,9 @@ inventory_data = {
     }
 }
 
+# Save the inventory data to the inventory file
+with open("servers_inventory", "w") as f:
+    json.dump(inventory_data, f)
+
 # Print the inventory data as JSON
 print(json.dumps(inventory_data))
-
