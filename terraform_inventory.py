@@ -10,12 +10,13 @@ inventory = json.loads(output)
 # Define the inventory structure
 inventory_data = {
     "test_servers": {
-        "hosts": [inventory["test_server_ip"]["value"]["public_ip"]]
+        "hosts": [inventory["test_server_ip"]]
     },
     "production_servers": {
-        "hosts": [inventory["production_server_ip"]["value"]["public_ip"]]
+        "hosts": [inventory["production_server_ip"]]
     }
 }
 
 # Print the inventory data as JSON
 print(json.dumps(inventory_data))
+
