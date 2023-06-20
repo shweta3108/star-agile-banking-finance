@@ -11,10 +11,10 @@ inventory = json.loads(output)
 # Define the inventory structure
 inventory_data = {
     "test_servers": {
-        "hosts": [inventory["test_server_ip"]]
+        "hosts": [inventory["test_server_ip"]["value"]]
     },
     "production_servers": {
-        "hosts": [inventory["production_server_ip"]]
+        "hosts": [inventory["production_server_ip"]["value"]]
     }
 }
 
