@@ -44,14 +44,14 @@ node {
         }
     }
          stage('Terraform Provision') {
-   dir('terraform') {
+  
         sh 'sudo chmod 600 devopeslab.pem'
         sh 'ls'
         sh 'terraform init'
         sh 'terraform validate'
         sh 'terraform plan -out=tfplan'
         sh 'terraform apply -auto-approve tfplan'
-    }
+  
          }
     stage('Run App') {
     ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts', playbook: 'ansible-playbook.yml'
