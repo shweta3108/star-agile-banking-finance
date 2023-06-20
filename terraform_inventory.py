@@ -1,26 +1,24 @@
 #!/usr/bin/env python3
 
 import subprocess
-import json
-import yaml
 
 # Run Terraform output command to get the IP addresses
-output = subprocess.check_output(["terraform", "output", "-json"]).decode("utf-8")
-inventory = json.loads(output)
+output = subprocess.check_output(["terraform", "output"]).decode("utf-8")
+output_lines = output.splitlines()
 
-# Define the inventory structure
-inventory_data = {
-    "test_servers": {
-        "hosts": [inventory["test_server_ip"]["value"]]
-    },
-    "production_servers": {
-        "hosts": [inventory["production_server_ip"]["value"]]
-    }
-}
+# Extract the IP addresses from the output
+test_server_ip = output_lines[0].split(" = ")[1]
+production_server_ip = output_lines[1].split(" = ")[1]
 
-# Save the inventory data to the inventory file in YAML format
+# Generate the inventory file
 with open("servers_inventory", "w") as f:
-    yaml.dump(inventory_data, f)
+    f.write("[testservers]\n")
+    f.write(test_server_ip + "\n\n")
+    f.write("[prodservers]\n")
+    f.write(production_server_ip + "\n\n")
+    f.write("[webservers:vars]\n")
+    f.write('ansible_ssh_user="ubuntu"')
 
-# Print the inventory data as YAML
-print(yaml.dump(inventory_data))
+# Print the inventory file content
+with open("servers_inventory", "r") as f:
+    print(f.read())
