@@ -1,6 +1,6 @@
 ---
 - name: Configure Docker on EC2 Instances
-  hosts: production_servers
+  hosts: prodservers
   become: true
   connection: ssh
   tasks:
