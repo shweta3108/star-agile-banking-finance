@@ -2,7 +2,6 @@
 - name: Configure Docker on EC2 Instances
   hosts: testservers
   become: true
-  remote_user: ubuntu
   connection: ssh
     - name: Updating apt
       command: sudo apt-get update
