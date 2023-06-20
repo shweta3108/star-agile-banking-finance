@@ -51,7 +51,11 @@ node {
         sh 'terraform apply -auto-approve tfplan'
   
          }
-    stage('Run App') {
-    ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts', playbook: 'ansible-playbook.yml'
+    stage('Test Server Deployment') {
+        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'servers_inventory', playbook: 'test-server-playbook.yml'
+    }
+    
+    stage('Prod Server Deployment') {
+        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'servers_inventory', playbook: 'prod-server-playbook.yml'
     }
 }
