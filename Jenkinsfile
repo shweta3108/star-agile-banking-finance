@@ -54,10 +54,10 @@ node {
   
          }
  stage('Test Server & Get Application URL') {
-            steps {
+        
                 ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'test-server-playbook.yml', inventory: 'servers_inventory'
                 sh 'ansible -i servers_inventory testservers -m shell -a "cat ~/application_url.txt" > application_url.txt'
-            }
+            
         }
 
     stage('Selenium Test') {
