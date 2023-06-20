@@ -45,8 +45,6 @@ node {
     }
          stage('Terraform Provision') {
   
-        sh 'sudo chmod 600 devopeslab.pem'
-        sh 'ls'
         sh 'terraform init'
         sh 'terraform validate'
         sh 'terraform plan -out=tfplan'
