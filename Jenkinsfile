@@ -59,7 +59,7 @@ node {
 
     stage('Selenium Test') {
         sleep(time: 60, unit: 'SECONDS') 
-        sh 'sudo java -jar insureme-selenium-runnable-jar.jar'
+        sh 'sudo java -jar financeme-selenium-runnable-jar.jar'
 
     }
     stage('Run Prod Server') {
