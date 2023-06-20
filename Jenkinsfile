@@ -44,11 +44,13 @@ node {
         }
     }
          stage('Terraform Provision') {
-  
-        sh 'terraform init'
-        sh 'terraform validate'
-        sh 'terraform plan -out=tfplan'
-        sh 'terraform apply -auto-approve tfplan'
+   sh '''
+                terraform init
+                terraform validate
+                terraform plan -out=tfplan
+                terraform apply -auto-approve tfplan
+                python terraform_inventory.py > inventory.json
+                '''
   
          }
     stage('Run Test Server') {
