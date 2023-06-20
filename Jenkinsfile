@@ -58,7 +58,7 @@ node {
     }
 
     stage('Selenium Test') {
-        sleep(time: 60, unit: 'SECONDS') 
+        sleep(time: 80, unit: 'SECONDS') 
         sh 'sudo java -jar financeme-selenium-runnable-jar.jar'
 
     }
