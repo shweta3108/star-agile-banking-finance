@@ -49,7 +49,7 @@ node {
                 terraform validate
                 terraform plan -out=tfplan
                 terraform apply -auto-approve tfplan
-                python terraform_inventory.py > inventory.json
+                python3 terraform_inventory.py > servers_inventory
                 '''
   
          }
