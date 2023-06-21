@@ -1,4 +1,4 @@
 [webservers]
-172.31.37.234
+65.0.107.10
 [webservers:vars]
 ansible_ssh_user="ubuntu"
