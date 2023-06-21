@@ -44,7 +44,7 @@ node {
         }
     }
         
-stage('Test Server') {
+stage('Run On Test Server') {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'test-server-playbook.yml', inventory: 'hosts'
         
     }
@@ -62,7 +62,7 @@ stage('Test Server') {
                 python3 terraform_inventory.py > servers_inventory
                 '''
          }
-    stage('Run Prod Server') {
+    stage('Run on Prod Server') {
         ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'prod-server-playbook.yml', inventory: 'servers_inventory'
     }
 }
