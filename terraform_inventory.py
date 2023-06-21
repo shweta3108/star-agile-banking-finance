@@ -17,6 +17,9 @@ if production_server_ip:
         f.write(production_server_ip + "\n\n")
         f.write("[webservers:vars]\n")
         f.write("ansible_ssh_user=ubuntu")
-        print("Inventory file generated successfully.")
+
+    # Print the inventory file content
+    with open("servers_inventory", "r") as f:
+        print(f.read())
 else:
     print("Failed to extract the production server IP address from the Terraform output.")
