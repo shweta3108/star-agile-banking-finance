@@ -18,7 +18,7 @@ node {
             allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: false,
-            reportDir: 'target/surefire-reports',
+            reportDir: '/var/lib/jenkins/workspace/Finance-Me/target/surefire-reports',
             reportFiles: 'index.html',
             reportName: 'HTML Report',
             reportTitles: '',
