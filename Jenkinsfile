@@ -47,6 +47,10 @@ node {
      stage('Run App') {
     ansiblePlaybook become: true, credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml'
     } 
+    stage('Selenium Test') {
+        sleep(time: 80, unit: 'SECONDS') 
+        sh 'sudo java -jar finance_me.jar'
+    }
 
 }
         
