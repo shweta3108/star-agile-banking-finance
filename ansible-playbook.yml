@@ -8,9 +8,16 @@
 
   - name : Install Docker
     command : sudo apt-get install -y docker.io
+    become : yes
+    become_user : root
 
   - name : Start Docker Service
     command : sudo systemctl start docker
-
+    become : yes
+    become_user : root
+  - name : stop existing containers
+    shell: docker stop $(docker ps -a -q)
+  - name : delete all containers
+    shell: docker rm $(docker ps -a -q)
   - name: Deploy Docker Container
-    command: sudo docker run -itd -p 8086:8081 shwetas27/finance-me:latest
+    command: docker run -itd -p 8087:8081 shwetas27/finance-me:latest
