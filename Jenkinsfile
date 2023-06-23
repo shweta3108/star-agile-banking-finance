@@ -1,6 +1,6 @@
 def containerName="finance-me"
 def tag="latest"
-def dockerHubUser="anujsharma1990"
+def dockerHubUser="shwetas27"
 def httpPort="8081"
 
 node {
