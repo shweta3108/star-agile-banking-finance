@@ -53,16 +53,4 @@ stage('Run On Test Server') {
         sleep(time: 80, unit: 'SECONDS') 
         sh 'sudo java -jar financeme-selenium-runnable-jar.jar'
     }
-     stage('Terraform Provision') {
-   sh '''
-                terraform init
-                terraform validate
-                terraform plan -out=tfplan
-                terraform apply -auto-approve tfplan
-                python3 terraform_inventory.py > servers_inventory
-                '''
-         }
-    stage('Run on Prod Server') {
-        ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: 'prod-server-playbook.yml', inventory: 'servers_inventory'
-    }
-}
+     
