@@ -45,7 +45,7 @@ node {
     }
     
      stage('Run App') {
-    ansiblePlaybook credentialsId: 'pem-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts', playbook: 'ansible-playbook.yml'
+    ansiblePlaybook become: true, credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml'
     } 
 
 }
