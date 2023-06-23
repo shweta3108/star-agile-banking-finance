@@ -43,4 +43,5 @@ node {
             echo "Image push complete"
         }
     }
+    )
         
