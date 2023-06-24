@@ -8,7 +8,7 @@ resource "aws_instance" "Prod-Server" {
  key_name = "devops"
 
 tags ={
-name=" Terraform hands_on"
+name=" Terraform prod"
 }
 user_data = <<-EOF
  #!/bin/bash
