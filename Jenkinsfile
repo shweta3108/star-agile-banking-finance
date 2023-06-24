@@ -51,7 +51,7 @@ node {
         sleep(time: 80, unit: 'SECONDS') 
         sh 'sudo java -jar finance_me.jar'
     }
-     stage('Terraform Provision') {
+     stage('Terraform instance deploy') {
    
         sh "terraform init"
         sh "terraform plan"
