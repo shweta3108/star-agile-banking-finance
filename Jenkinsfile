@@ -45,7 +45,8 @@ node {
     }
     
     stage('Run App') {
-      ansiblePlaybook become: true, credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml'
+      ansiblePlaybook  credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', inventory: 'servers_inventory', playbook: 'ansible-playbook.yml'
+   
     } 
     stage('Selenium Test') {
         sleep(time: 80, unit: 'SECONDS') 
