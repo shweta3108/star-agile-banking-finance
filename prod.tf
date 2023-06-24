@@ -12,7 +12,7 @@ resource "aws_instance" "Prod-Server" {
      sudo apt-get update -y
      sudo apt install docker.io -y
      sudo systemctl enable docker
-     sudo docker run -itd -p 8085:8081 shwetas27/financeme:1.0
+     sudo docker run -itd -p 8085:8081 shwetas27/finance-me:1.0
      sudo docker start $(docker ps -aq)
  EOF
  tags = {
