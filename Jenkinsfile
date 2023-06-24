@@ -53,12 +53,14 @@ node {
         echo " Selenium test successful"
     }
      stage('Terraform instance deploy') {
-   
-        sh "terraform init"
-        sh "terraform plan"
-        sh "terraform apply" 
-                
-         }
+   sh '''
+                terraform init
+                terraform validate
+                terraform plan -out=tfplan
+                terraform apply -auto-approve tfplan
+               '''
+                   
+        }
 
 }
         
