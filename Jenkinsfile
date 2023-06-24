@@ -52,13 +52,11 @@ node {
         sh 'sudo java -jar finance_me.jar'
     }
      stage('Terraform Provision') {
-   sh '''
-                terraform init
-                terraform validate
-                terraform plan -out=tfplan
-                terraform apply -auto-approve tfplan
-                python3 terraform_inventory.py > servers_inventory
-                '''
+   
+        sh "terraform init"
+        sh "terraform plan"
+        sh "terraform apply" 
+                
          }
 
 }
