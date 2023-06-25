@@ -4,7 +4,10 @@ resource "aws_instance" "Prod-Server" {
  instance_type = "t2.micro"
  availability_zone = "us-east-1a"
  key_name = "devops"
-
+network_interface {
+ device_index = 0
+ network_interface_id = aws_network_interface.proj-ni.id
+ }
 tags ={
 name=" Terraform prod"
 }
