@@ -50,7 +50,7 @@ node {
     } 
     stage('Selenium Test') {
         sleep(time: 80, unit: 'SECONDS') 
-        echo " Selenium test successful"
+        sh "java -jar finance-me"
     }
      stage('Terraform instance deploy') {
    sh '''
