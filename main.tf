@@ -7,7 +7,8 @@ resource "aws_instance" "Prod-Server" {
  vpc_security_group_ids = "sg-059e816842c060dc4"
 tags ={
 name=" Terraform prod"
-}
+}}
+output "Production server"{
  sudo apt-get update -y
  sudo apt install docker.io -y
  sudo systemctl enable docker
