@@ -147,7 +147,7 @@ resource "aws_instance" "proj-instance" {
                 EOF
 
   tags = {
-      Name = "project-instance"
+      Name = "terraform-instance"
   }
 }
 
