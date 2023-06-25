@@ -7,11 +7,14 @@ resource "aws_instance" "Prod-Server" {
  vpc_security_group_ids = "sg-059e816842c060dc4"
 tags ={
 name=" Terraform prod"
-}}
-output "Production server"{
- sudo apt-get update -y
- sudo apt install docker.io -y
- sudo systemctl enable docker
- sudo docker run -itd -p 8087:8081 shwetas27/finance-me:1.0
- sudo docker start $(docker ps -aq)
+}
+
+user data = <<-EOF
+#!/bin/bash
+  apt-get update -y
+  apt install docker.io -y
+  systemctl enable docker
+  docker run -itd -p 8087:8081 shwetas27/finance-me:1.0
+  docker start $(docker ps -aq)
+EOF
 }
