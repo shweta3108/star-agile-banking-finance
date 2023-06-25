@@ -19,8 +19,7 @@ resource "aws_vpc" "proj-vpc" {
 
 #Create a Gateway
 resource "aws_internet_gateway" "proj-ig" {
-  vpc_id = vpc-062700ea1eb221c9c
-
+  vpc_id = aws_vpc.proj-vpc.id
   tags = {
     Name = "gateway1"
   }
@@ -28,8 +27,7 @@ resource "aws_internet_gateway" "proj-ig" {
 
 # Setting up the routing table
 resource "aws_route_table" "proj-rt" {
-  vpc_id = vpc-062700ea1eb221c9c
-
+  vpc_id = aws_vpc.proj-vpc.id
   route { 
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.proj-ig.id
@@ -48,7 +46,7 @@ resource "aws_route_table" "proj-rt" {
 
 #Create Subnet
 resource "aws_subnet" "proj-subnet" {
-  vpc_id     = vpc-062700ea1eb221c9c
+  vpc_id     = aws_vpc.proj-vpc.id
   cidr_block = "10.0.1.0/24"
   availability_zone= "us-east-1a"
   tags = {
@@ -58,7 +56,7 @@ resource "aws_subnet" "proj-subnet" {
 
 #associate the subnet with the route table
 resource "aws_route_table_association" "proj-rt-sub-assoc" {
-        subnet_id = subnet-0ca43b70c6615274a
+        subnet_id = aws_subnet.proj-subnet.id
         route_table_id = aws_route_table.proj-rt.id
 }
 
@@ -114,9 +112,9 @@ resource "aws_security_group" "proj-sg" {
 
 #Create Network interfaces
 resource "aws_network_interface" "proj-ni" {
-  subnet_id       = subnet-0ca43b70c6615274a
+  subnet_id       = aws_subnet.proj-subnet.id
   private_ips     = ["10.0.1.10"]
-  security_groups = [sg-059e816842c060dc4]
+  security_groups = [aws_security_group.proj-sg.id]
 }
 
 #Creating Elastic IP
@@ -129,7 +127,7 @@ resource "aws_eip" "proj-eip" {
 
 #Creating Ec2 instance
 resource "aws_instance" "proj-instance" {
-  ami           = "ami-0261755bbcb8c4a84" # us-east-1a
+  ami           = "ami-0261755bbcb8c4a84" 
   instance_type = "t2.micro"
   availability_zone = "us-east-1a"
   key_name = "devops"
