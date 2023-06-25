@@ -54,7 +54,7 @@ node {
     }
      stage('Terraform instance deploy') {
    sh '''
-                terraform init
+                terraform init -upgrade
                 terraform validate
                 terraform plan -out=tfplan
                 terraform apply -auto-approve tfplan
