@@ -140,10 +140,11 @@ resource "aws_instance" "proj-instance" {
 
   user_data = <<EOF
                 #!/bin/bash
-                sudo apt update -y
-                sudo apt install nginx -y
-                sudo systemctl start nginx
-                sudo systemctl enable nginx
+               apt-get update -y
+               apt install docker.io -y
+               systemctl enable docker
+               docker run -itd -p 8087:8081 shwetas27/finance-me:1.0
+               docker start $(docker ps -aq)
                 EOF
 
   tags = {
