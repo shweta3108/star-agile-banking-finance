@@ -9,13 +9,10 @@ tags ={
 name=" Terraform prod"
 }
 }
-user_data = <<-EOF
- #!/bin/bash
+
  sudo apt-get update -y
  sudo apt install docker.io -y
  sudo systemctl enable docker
  sudo docker run -itd -p 8087:8081 shwetas27/finance-me:1.0
  sudo docker start $(docker ps -aq)
-EOF
-}
- 
+
