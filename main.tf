@@ -147,6 +147,7 @@ resource "aws_instance" "proj-instance" {
   docker ps
 tags = {
       Name = "terraform-instance"
+EOF
   }
 }
 
