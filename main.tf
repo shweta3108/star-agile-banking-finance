@@ -139,12 +139,12 @@ resource "aws_instance" "proj-instance" {
   
 
   user_data = <<EOF
-      apt-get update -y
-      apt install docker.io -y
-     systemctl enable docker
-      docker run -itd -p 8085:8081 vikuldocker/insureme:1.0
-      docker start $(docker ps -aq)
-     docker ps
+     apt-get update -y
+  apt install docker.io -y
+  systemctl enable docker
+  docker run -itd -p 8087:8081 shwetas27/finance-me:1.0
+  docker start $(docker ps -aq)
+  docker ps
 tags = {
       Name = "terraform-instance"
   }
